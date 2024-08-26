@@ -45,8 +45,8 @@ openssl && \
     rm -rf /var/lib/apt/lists/* && \
     curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
 
-# Install xdebug
-RUN pecl install xdebug-3.2.1 && \
+# Install xdebug for PHP 7.4
+RUN pecl install xdebug-2.9.8 && \
     docker-php-ext-enable xdebug && \
     mkdir /var/log/xdebug
 
