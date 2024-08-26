@@ -116,4 +116,4 @@ RUN a2enmod rewrite headers
 RUN rm -rf /usr/src/*
 
 EXPOSE 80
-EXPOSE 80000
+EXPOSE 8000
