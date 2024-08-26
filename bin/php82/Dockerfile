@@ -11,6 +11,15 @@ RUN apt-get -y update --fix-missing && \
     apt-get --no-install-recommends install -y apt-utils && \
     rm -rf /var/lib/apt/lists/*
 
+RUN apt-get update -y \
+  && apt-get install -y \
+     libxml2-dev \
+  && apt-get clean -y \
+  && docker-php-ext-install soap \
+  && apt-get install nodejs -y \
+  && apt-get install npm -y
+
+RUN docker-php-ext-install -j$(nproc) opcache
 
 # Install useful tools and install important libaries
 RUN apt-get -y update && \
@@ -39,6 +48,9 @@ openssl && \
 RUN pecl install xdebug-3.2.1 && \
     docker-php-ext-enable xdebug && \
     mkdir /var/log/xdebug
+
+# Install Composer
+COPY --from=composer /usr/bin/composer /usr/bin/composer
 
 # Install redis
 RUN pecl install redis-5.3.7 && \
