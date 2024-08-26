@@ -115,3 +115,5 @@ RUN a2enmod rewrite headers
 # Cleanup
 RUN rm -rf /usr/src/*
 
+EXPOSE 80
+EXPOSE 80000
